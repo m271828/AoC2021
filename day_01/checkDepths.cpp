@@ -1,4 +1,5 @@
 #include <fstream>
+#include <iostream>
 #include "checkDepths.h"
 
 CheckDepths::Result CheckDepths::readDepths(std::string fileName)
@@ -37,6 +38,7 @@ int CheckDepths::sumWindow(std::list<int>::iterator i, size_t window)
     res += *i;
     i++;
   }
+  return res;
 }
 
 size_t CheckDepths::countDeeperSlidingWindow(size_t window)
@@ -48,10 +50,12 @@ size_t CheckDepths::countDeeperSlidingWindow(size_t window)
   while(i != readings.end())
   {
     int thisWindow = sumWindow(i, window);
-    if(lastWindow > thisWindow)
+    if(lastWindow < thisWindow)
     {
       deeper++;
     }
+    lastWindow = thisWindow;
+    i++;
   }
   return deeper;
 }

@@ -7,6 +7,6 @@ int main()
   if(cp.readDepths("input") != CheckDepths::Result::SUCCESS)
     return -1;
   std::cout << "Measure to Measure: " << cp.countDeeper() << std::endl;
-  std::cout << "Windows of 3: " << cp.countDeeperSlidingWindow(3) << endl;
+  std::cout << "Windows of 3: " << cp.countDeeperSlidingWindow(3) << std::endl;
   return 0;
 }
