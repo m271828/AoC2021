@@ -1,0 +1,2 @@
+language = "C++"
+run = "g++ main.cpp checkDepth.cpp; ./a.out"
