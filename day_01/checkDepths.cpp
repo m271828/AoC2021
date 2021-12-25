@@ -28,3 +28,30 @@ size_t CheckDepths::countDeeper()
   }
   return deeper;
 }
+
+int CheckDepths::sumWindow(std::list<int>::iterator i, size_t window)
+{
+  int res = 0;
+  for(size_t j = 0; j < window; j++)
+  {
+    res += *i;
+    i++;
+  }
+}
+
+size_t CheckDepths::countDeeperSlidingWindow(size_t window)
+{
+  size_t deeper = 0;
+  auto i = readings.begin();
+  int lastWindow = sumWindow(i, window);
+  i++;
+  while(i != readings.end())
+  {
+    int thisWindow = sumWindow(i, window);
+    if(lastWindow > thisWindow)
+    {
+      deeper++;
+    }
+  }
+  return deeper;
+}
