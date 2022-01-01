@@ -10,6 +10,6 @@
 #cd ..
 # Day 3
 cd day_03
-g++ main.cpp CalculateEpsilonGamma.cpp -o Day03.out
+g++ main.cpp CalculateEpsilonGamma.cpp CalculateLifeSupport.cpp -o Day03.out
 ./Day03.out
 cd ..
