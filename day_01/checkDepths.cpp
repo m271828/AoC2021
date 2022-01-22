@@ -6,18 +6,19 @@ CheckDepths::Result CheckDepths::readDepths(std::string fileName)
 {
   std::ifstream file(fileName);
   std::string line;
-  for(size_t i = 0; std::getline(file, line); ++i)
+  for(std::size_t i = 0; std::getline(file, line); ++i)
   {
       readings.emplace_back(std::stoi(line));
   }
   return Result::SUCCESS;
 }
 
-size_t CheckDepths::countDeeper()
+std::size_t CheckDepths::countDeeper()
 {
-  size_t deeper = 0;
+  std::size_t deeper = 0;
   auto i = readings.begin();
-  while(i != readings.end())
+  auto end = --readings.end();
+  while(i != end)
   {
     auto v1 = *i;
     ++i;
@@ -30,10 +31,10 @@ size_t CheckDepths::countDeeper()
   return deeper;
 }
 
-int CheckDepths::sumWindow(std::list<int>::iterator i, size_t window)
+int CheckDepths::sumWindow(std::list<int>::iterator i, std::size_t window)
 {
   int res = 0;
-  for(size_t j = 0; j < window; j++)
+  for(std::size_t j = 0; j < window; j++)
   {
     res += *i;
     i++;
@@ -41,13 +42,14 @@ int CheckDepths::sumWindow(std::list<int>::iterator i, size_t window)
   return res;
 }
 
-size_t CheckDepths::countDeeperSlidingWindow(size_t window)
+std::size_t CheckDepths::countDeeperSlidingWindow(std::size_t window)
 {
-  size_t deeper = 0;
+  std::size_t deeper = 0;
   auto i = readings.begin();
+  auto end = --(--readings.end());
   int lastWindow = sumWindow(i, window);
   i++;
-  while(i != readings.end())
+  while(i != end)
   {
     int thisWindow = sumWindow(i, window);
     if(lastWindow < thisWindow)
