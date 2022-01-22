@@ -5,7 +5,8 @@ class CheckDepths
 {
 private:
   std::list<int> readings;
-  int sumWindow(std::list<int>::iterator i, size_t window);
+  int sumWindow(std::list<int>::iterator i, std::size_t window);
+
 public:
   enum class Result {
     SUCCESS,
@@ -14,6 +15,6 @@ public:
 
   Result readDepths(std::string file);
 
-  size_t countDeeper();
-  size_t countDeeperSlidingWindow(size_t window);
+  std::size_t countDeeper();
+  std::size_t countDeeperSlidingWindow(std::size_t window);
 };
